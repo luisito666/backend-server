@@ -8,8 +8,10 @@ services:
     build:
       context: .
       dockerfile: ./compose/app/Dockerfile
-    command: npm start
+    #command: npm start
     image: app
+    environment:
+      WAIT_HOSTS: mongodb:27017
     depends_on:
       - mongodb
     volumes:
@@ -21,8 +23,8 @@ services:
     image: mongo
     volumes:
       - local_mongo_db:/data/db
-    env_file:
-      - ./.enviroments/mongo/.env
+    #env_file:
+    #  - ./.enviroments/mongo/.env
     ports:
       - 27017:27017
 
